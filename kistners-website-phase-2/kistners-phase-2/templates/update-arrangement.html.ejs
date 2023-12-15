@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Update Arrangement</title>
+    <link href="/static/kistners.css" rel="stylesheet"/>
+    
+    <script>
+      function displayArrangement(identifier){
+        var arrangements = <%= JSON.stringify(arrangements) %>;
+        document.getElementById("name").value = arrangements[identifier].name;
+        document.getElementById("description").value = arrangements[identifier].description;
+        document.getElementById("image").value = arrangements[identifier].image;
+      }
+
+    </script>    
+  </head>
+  <body>
+    <h1>Update Arrangement</h1>
+      <form method="POST">
+        <!--div class="error-message">
+          <%= errorMessage %>
+        </div-->        
+        <label for="id">Select an arrangement to edit: </label>
+        <br>
+      
+        <fieldset>
+
+          <select name="id" onchange="displayArrangement(this.selectedIndex)">      
+            <%= arrangements.map(arrangement => {
+              return `<option value=${arrangement.id}>${arrangement.name}</option>`;
+            }).join('\n') %>
+
+          </select>
+          <br>
+          
+          <label for="name">Name:</label>
+          <input id="name" type="text" name="name" value = "<%= arrangements[0].name %>" required/>
+          <br>
+          
+          <label for="description">Description:</label>
+          <input id="description" type="text" name="description" value = "<%= arrangements[0].description %>" required/>
+          <br>
+          
+          <input id="image" type="file" name="image" value = "<%= arrangements[0].image %>" required/>
+          <!--input id="image" type="file" name="image" required/-->
+          <br>
+          
+          <input type="submit" value="Submit Arrangement"/>
+         
+        </fieldset> 
+      </form>
+  </body>
+</html>

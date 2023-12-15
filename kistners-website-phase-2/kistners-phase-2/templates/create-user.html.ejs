@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Create New User</title>
+    <link href="/static/kistners.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="./public/fieldset.css"/>
+  </head>
+  <body>
+    <h1>Create User</h1>
+    <form method="POST">
+      
+      <div class="error-message">
+        <%= errorMessage %>
+      </div>
+      
+      <fieldset class="field-set">
+        
+        <label for="username">Username:</label>
+        <input type="text" name="username" />
+        <br>
+
+        <label for="role">Role:</label>
+        <input type="radio" name="role" value='E'/>Employee
+        <input type="radio" name="role" value='A'/>Admin
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password"/>
+        <br>
+
+        <label for="passwordConfirmation">Password Confirmation:</label>
+        <input type="password" name="passwordConfirmation"/>
+        <br>
+
+        <input type="submit" value="Create Account"/>    
+        
+      </fieldset>
+      
+    </form>
+  </body>
+</html>

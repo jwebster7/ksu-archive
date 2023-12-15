@@ -1,0 +1,18 @@
+'''
+Author: Joseph Webster & Michael Yangmi
+Date: 03.13.19
+Class: CIS 575 | Introduction to Algorithm Analysis
+Professor: Dr. Torben Amtoft
+'''
+
+N = 100
+Pseudo-Random Swaps: 323
+Almost-Ordered Swaps: 266
+
+N = 1000
+Pseudo-Random Swaps: 4698
+Almost-Ordered Swaps: 4154
+
+N = 10000
+Pseudo-Random Swaps: 62564
+Almost-Ordered Swaps: 58243

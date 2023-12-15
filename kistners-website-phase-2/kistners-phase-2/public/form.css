@@ -1,0 +1,12 @@
+.form {
+  
+}
+
+.fieldset {
+  font-family: "Segoe UI";
+  border-radius: 25px;
+}
+
+.fieldset > input {
+   border-radius: 25px;
+}

@@ -1,0 +1,103 @@
+-- Author: Joe Webster
+-- Class: CIS 560 Databases
+-- Instructor: John Keller
+-- Assignment: Homework 5
+
+____________
+___Part_1___
+
+Relation:
+	Route{ArrivalTime, DepartureTime, Location, Bus}
+
+Functional Dependencies:
+	{DepartureTime, Location} -> {Bus}
+	{ArrivalTime} -> {DepartureTime}
+	{Bus, ArrivalTime} -> {Location}
+
+-- Question 1 --
+20 points - Compute the closure of all sets of attributes.
+
+	- {ArrivalTime}+ ={ArrivalTime, DepartureTime}
+	- {DepartureTime}+ ={DepartureTime}
+	- {Location}+ = {Location}
+	- {Bus}+ ={Bus}
+	
+	- {ArrivalTime, DepartureTime}+ ={ArrivalTime, DepartureTime}
+	- {ArrivalTime, Location}+ ={ArrivalTime, Location, DepartureTime, Bus}
+	- {ArrivalTime, Bus}+ ={ArrivalTime, Bus, DepartureTime, Location}
+	- {Bus, Location}+ ={Bus, Location}
+	- {Bus, DepartureTime}+ ={Bus, DepartureTime}
+	- {DepartureTime, Location}+ ={DepartureTime, Location, Bus}
+	
+	- {ArrivalTime, DepartureTime, Location}+ ={ArrivalTime, DepartureTime, Location, Bus}
+	- {ArrivalTime, DepartureTime, Bus}+ ={ArrivalTime, DepartureTime, Bus, Location}
+	- {ArrivalTime, Location, Bus}+ ={ArrivalTime, DepartureTime, Location, Bus}
+	- {DepartureTime, Location, Bus}+ ={DepartureTime, Location, Bus}
+	
+	- {ArrivalTime, DepartureTime, Location, Bus}+ ={ArrivalTime, DepartureTime, Location, Bus}
+
+	
+-- Question 2 --
+5 points - Using the closures from Question 1, identify the keys for the relation Route. 
+Remember we want minimal keys, not just any superkey.
+
+	- {ArrivalTime, Location}
+	- {ArrivalTime, Bus}
+
+	
+-- Question 3 -- 
+10 points - Using the closures from Question 1, list all non-trivial functional 
+dependencies for the relation Route.
+
+	- {ArrivalTime} -> {DepartureTime}
+	- {ArrivalTime, Bus} -> {Location, DepartureTime}
+	- {ArrivalTime, Location} -> {DepartureTime, Bus}
+	- {ArrivalTime, Location, Bus} -> {DepartureTime}
+	- {DepartureTime, Location} -> {Bus}
+	- {DepartureTime, Location, ArrivalTime} -> {Bus}
+	- {DepartureTime, ArrivalTime, Bus} -> {Location}	
+
+____________
+___Part_2___
+
+Relation:
+	Shuttle{DepartureTime, Route, Driver, Bus, Capacity}
+
+Functional Dependencies:
+	{Bus, DepartureTime} -> {Driver}
+	{Bus} -> {Capacity}
+	{Route, DepartureTime} -> {Bus}
+	
+-- Question 4 --
+	5 points - For each of the three provided functional dependencies above, X → Y, 
+compute X+. Once you have the closures computed, identify the key(s) for the relation Shuttle.
+
+	- {Bus, DepartureTime}+ ={Bus, DepartureTime, Driver, Capacity}
+	- {Bus}+ ={Bus, Capacity}
+	- {Route, DepartureTime}+ ={Route, DepartureTime, Bus, Capacity, DepartureTime}
+	
+	- The only key is {Route, DepartureTime}
+	
+-- Question 5 --
+	10 points - From Question 4, we can see that Bus → Capacity is a violation of Boyce-Codd 
+Normal Form (BCNF). Decompose the relation Shuttle into BCNF relations, starting with this 
+dependency violation.
+
+Show each iteration in your work, and make clear which relations are your resulting BCNF relations.
+Identify the key in each of the resulting BCNF relations.
+
+	- superkey: {Route, DepartureTime} -> {DepartureTime, Route, Driver, Bus, Capacity}
+	- FD 1: {Bus, DepartureTime}+ = {Bus, DepartureTime, Driver, Capacity}
+	
+	- Relation: Shuttle {DepartureTime, Route, Driver, Bus, Capacity}
+	- X+ = {Bus, Capacity} where B is the Key
+	- R1 = {Bus, DepartureTime, Driver, Route} = {X UNION (ALL - X+)}
+	- X2+ = {Bus, DepartureTime, Driver}
+	- R2 = {Bus, Route}
+	
+	
+	
+	
+	
+	
+	

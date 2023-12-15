@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Update User Role</title>
+    <link href="/static/kistners.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <h1>Update Role</h1>
+    <form method="POST">
+      
+      <div class="error-message">
+        <%= errorMessage %>
+      </div>
+      
+      <fieldset>
+        
+        <label for="username">Username:</label>
+        <input type="text" name="username" />
+
+        <label for="role">Role:</label>
+        <input type="radio" name="role" value='E'/>Employee
+        <input type="radio" name="role" value='A'/>Admin
+        <br>
+
+        <input type="submit" value="Update Role"/> 
+        
+      </fieldset>
+      
+    </form>
+  </body>
+</html>
